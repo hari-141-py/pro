@@ -1,0 +1,198 @@
+#:kivy 2.0.0
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+
+<LoadingPopup>:
+    orientation: 'vertical'
+    padding: 30
+    spacing: 20
+    canvas.before:
+        Color:
+            rgba: get_color_from_hex('#191A1A')
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [20]
+    Label:
+        text: "Loading camera..."
+        font_size: 20
+        color: get_color_from_hex('#016B70')
+        halign: 'center'
+        size_hint_y: None
+        height: 40
+
+<HomeScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: get_color_from_hex('#9C8D91')
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: 60
+            padding: [10, 5]
+            spacing: 10
+            canvas.before:
+                Color:
+                    rgba: get_color_from_hex('#9C8D91')
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Button:
+                text: ">"
+                font_size: 24
+                background_normal: ''
+                background_color: 0, 0, 0, 0
+                color: get_color_from_hex('#FFFFFF')
+                size_hint_x: None
+                width: 40
+                on_press: root.show_permission_popup()
+
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: 10
+                Label:
+                    text: u"\u260E"
+                    font_size: 20
+                    color: get_color_from_hex('#FFFFFF')
+                    size_hint_x: None
+                    width: 25
+                Label:
+                    text: u"\U0001F4AC"
+                    font_size: 20
+                    color: get_color_from_hex('#FFFFFF')
+                    size_hint_x: None
+                    width: 25
+                Label:
+                    text: u"\u23F0"
+                    font_size: 20
+                    color: get_color_from_hex('#FFFFFF')
+                    size_hint_x: None
+                    width: 25
+                Label:
+                    text: "My Company (San Francisco)"
+                    font_size: 13
+                    color: get_color_from_hex('#FFFFFF')
+                Label:
+                    text: u"\U0001F527"
+                    font_size: 20
+                    color: get_color_from_hex('#FFFFFF')
+                    size_hint_x: None
+                    width: 25
+                Image:
+                    source: "MitchelAdmin.png"
+                    size_hint: None, None
+                    size: 35, 35
+                    allow_stretch: True
+                    keep_ratio: True
+                Label:
+                    text: "Mitchell Admin"
+                    font_size: 13
+                    color: get_color_from_hex('#FFFFFF')
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (1, 1)
+            padding: [0, 60, 0, 0]
+            spacing: 20
+            Widget:
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint: None, None
+                size: 120, 140
+                pos_hint: {'center_x': 0.5}
+                spacing: 10
+                Button:
+                    background_normal: 'ModuleLogo.png'
+                    background_down: 'ModuleLogo.png'
+                    size_hint: None, None
+                    size: 80, 80
+                    pos_hint: {'center_x': 0.5}
+                    on_press: root.show_permission_popup()
+                Label:
+                    text: "Attendance"
+                    font_size: 18
+                    color: get_color_from_hex('#FFFFFF')
+                    size_hint_y: None
+                    height: 30
+                    pos_hint: {'center_x': 0.5}
+            Widget:
+
+<CameraScreen>:
+    camera_placeholder: camera_placeholder
+    name_input: name_input
+    status_label: status_label
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+        canvas.before:
+            Color:
+                rgba: get_color_from_hex('#F6F7FA')
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Camera Preview"
+            font_size: 22
+            color: get_color_from_hex('#FFFFFF')
+            size_hint: (1, None)
+            height: 60
+            bold: True
+            canvas.before:
+                Color:
+                    rgba: get_color_from_hex('#016B70')
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        BoxLayout:
+            id: camera_placeholder
+            size_hint: (1, 0.7)
+
+        TextInput:
+            id: name_input
+            hint_text: "Enter your name"
+            multiline: False
+            size_hint: (1, None)
+            height: 40
+            font_size: 16
+            foreground_color: get_color_from_hex('#664A5F')
+            background_color: get_color_from_hex('#FFFFFF')
+            cursor_color: get_color_from_hex('#016B70')
+
+        BoxLayout:
+            size_hint: (1, None)
+            height: 50
+            spacing: 10
+
+            Button:
+                text: "Back"
+                background_normal: ''
+                background_color: get_color_from_hex('#664A5F')
+                color: get_color_from_hex('#FFFFFF')
+                size_hint: (0.5, None)
+                height: 50
+                on_press: root.go_back()
+
+            Button:
+                text: "Capture"
+                background_normal: ''
+                background_color: get_color_from_hex('#016B70')
+                color: get_color_from_hex('#FFFFFF')
+                size_hint: (0.5, None)
+                height: 50
+                on_press: root.capture_image()
+
+        Label:
+            id: status_label
+            text: ""
+            color: get_color_from_hex('#664A5F')
+            size_hint: (1, None)
+            height: 30
